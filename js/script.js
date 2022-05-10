@@ -1,14 +1,10 @@
-'use strict'
-document.getElementById('play-rock').addEventListener('click',()=>{
-	playGame("1");
-});
-document.getElementById('play-paper').addEventListener('click',()=>{
-	playGame("2");
-});
-document.getElementById('play-scissors').addEventListener('click',()=>{
-	playGame("3");
-});
-
+const buttons = document.querySelectorAll('button');
+buttons.forEach(e=>{
+	e.addEventListener('click',()=>{
+		playGame(e.innerText);
+	})
+})
+console.log(buttons[0].value);
 function playGame(playerInput){
 	clearMessages();
 	function printMessage(msg){
@@ -19,23 +15,19 @@ function playGame(playerInput){
 	function clearMessages(){
 		document.getElementById('messages').innerHTML = '';
 	}
-	function getMoveName(e){
-		if(e == '1'){
-			return 'kamień';
-		}else if(e =="2"){
-			return "papier";
-		}else if(e == "3"){
-			return "nożyce";
-		}
-	}
+
 	function displayResults(argPlayerMove,argComputerMove){
-		if(argPlayerMove==argComputerMove){
+		console.log(argComputerMove);
+		const moves = ['Kamień','Papier','Nożyce'];
+		printMessage('Twój ruch to: ' + argPlayerMove);
+		printMessage('Ruch komputera to: ' + moves[argComputerMove]);
+		if(argPlayerMove==moves[argComputerMove]){
 			printMessage('Remis');
-		}else if(argPlayerMove == "kamień" && argComputerMove == "nożyce"){
+		}else if(argPlayerMove == "Kamień" && moves[argComputerMove] == "Nożyce"){
 			printMessage('Wygrana');
-		}else if(argPlayerMove == "nożyce" && argComputerMove == "papier"){
+		}else if(argPlayerMove == "Nożyce" && moves[argComputerMove] == "Papier"){
 			printMessage('Wygrana');
-		}else if(argPlayerMove=="papier" && argComputerMove == "kamień"){
+		}else if(argPlayerMove=="Papier" && moves[argComputerMove] == "Kamień"){
 			printMessage('Wygrana');
 		}else if(argPlayerMove>=1 && argPlayerMove<=3){
 			printMessage('Wynik nieznany');
@@ -43,13 +35,5 @@ function playGame(playerInput){
 			printMessage('Przegrana');
 		}
 	}
-	
-	let computerMove = "nieznany ruch";
-	let playerMove = 'nieznany ruch';
-	playerMove = getMoveName(playerInput);
-	computerMove = getMoveName(Math.floor(Math.random() * 3 + 1));
-	printMessage('Twój ruch to: ' + playerMove);
-	printMessage('Ruch komputera to: ' + computerMove);
-	displayResults(playerMove,computerMove);
-		
+		displayResults(playerInput,Math.floor(Math.random() * 3));		
 }
