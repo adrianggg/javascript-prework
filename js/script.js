@@ -1,7 +1,7 @@
 const buttons = document.querySelectorAll('button');
-buttons.forEach(e=>{
-	e.addEventListener('click',()=>{
-		playGame(e.innerText);
+buttons.forEach(button=>{
+	button.addEventListener('click',()=>{
+		playGame(button.innerText);
 	})
 })
 console.log(buttons[0].value);
