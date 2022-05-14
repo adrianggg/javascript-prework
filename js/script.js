@@ -1,10 +1,8 @@
-const buttons = document.querySelectorAll('button');
-buttons.forEach(button=>{
+document.querySelectorAll('button').forEach(button=>{
 	button.addEventListener('click',()=>{
 		playGame(button.innerText);
 	})
 })
-console.log(buttons[0].value);
 function playGame(playerInput){
 	clearMessages();
 	function printMessage(msg){
@@ -15,12 +13,11 @@ function playGame(playerInput){
 	function clearMessages(){
 		document.getElementById('messages').innerHTML = '';
 	}
-
 	function displayResults(argPlayerMove,argComputerMove){
 		console.log(argComputerMove);
 		const moves = ['Kamień','Papier','Nożyce'];
-		printMessage('Twój ruch to: ' + argPlayerMove);
-		printMessage('Ruch komputera to: ' + moves[argComputerMove]);
+		printMessage(`Twój ruch to: ${argPlayerMove}`);
+		printMessage(`Ruch komputera to: ${moves[argComputerMove]}`);
 		if(argPlayerMove==moves[argComputerMove]){
 			printMessage('Remis');
 		}else if(argPlayerMove == "Kamień" && moves[argComputerMove] == "Nożyce"){
