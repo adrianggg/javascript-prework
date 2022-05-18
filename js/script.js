@@ -3,17 +3,17 @@ document.querySelectorAll('button').forEach(button=>{
 		playGame(button.innerText);
 	})
 })
-function playGame(playerInput){
-	clearMessages();
-	function printMessage(msg){
+const playGame = (playerInput)=>{
+	const printMessage = (msg)=>{
 		let div = document.createElement('div');
 		div.innerHTML = msg;
 		document.getElementById('messages').appendChild(div);
 	}
-	function clearMessages(){
+	const clearMessages = ()=>{
 		document.getElementById('messages').innerHTML = '';
 	}
-	function displayResults(argPlayerMove,argComputerMove){
+	clearMessages();
+	const displayResults = (argPlayerMove,argComputerMove)=>{
 		console.log(argComputerMove);
 		const moves = ['Kamień','Papier','Nożyce'];
 		printMessage(`Twój ruch to: ${argPlayerMove}`);
